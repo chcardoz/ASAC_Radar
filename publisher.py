@@ -27,7 +27,8 @@ def file_slice(file_name):
 
 port = "5556"
 context = zmq.Context()
-socket = context.socket("tcp://*:%s" % port)
+socket = context.socket(zmq.PUB)
+socket.bind("tcp://*:%s" % port)
 idx, file_len = file_slice("RadarData\Radar0")
 df = pd.read_table("RadarData\Radar0", skiprows=6, skipfooter=file_len -
                    idx-2, delim_whitespace=True, engine='python', header=None)
