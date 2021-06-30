@@ -28,7 +28,7 @@ def h4mac(key, message, alg):
 def send_dataframe(socket: Socket, obj, secret='', flags=0, alg='sha256'):
     """send pandas dataframe"""
 
-    p = pickle.dumps(obj, -1)
+    p = pickle.dumps(obj, 0)
     h = h4mac(secret.encode(), p, alg).hexdigest().upper()
     s = h.encode() + b'\n' + p
     z = zlib.compress(s)
