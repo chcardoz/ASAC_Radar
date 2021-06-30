@@ -50,7 +50,7 @@ class RadarPlot():
             self.canvas.setYRange(0, 60)
 
     def update(self):
-        file_name = "Radar" + str(self.file_idx) + ".txt"
+        file_name = "RadarData\Radar" + str(self.file_idx) + ".txt"
         self.corepoints_centroids = None
         self.read_headers(file_name)
         self.read_data(file_name)
