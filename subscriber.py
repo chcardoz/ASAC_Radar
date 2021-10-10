@@ -6,11 +6,13 @@ from re import search
 from pandaszmq import recv_dataframe
 
 
-port = "5556"
+port = "9090"
 context = zmq.Context()
 socket = context.socket(zmq.SUB)
-socket.connect("tcp://149.162.229.165:%s" % port)
+socket.connect("tcp://127.0.0.1:%s" % port)
+socket.subscribe("")
+
 
 while True:
-    data = recv_dataframe(socket=socket)
-    print(data)
+    df = recv_dataframe(socket=socket)
+    print(df)

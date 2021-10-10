@@ -43,9 +43,9 @@ class RadarPlot():
             elif name == "corepoint":
                 self.traces[name] = self.canvas.plot(
                     pen=None, symbol='o', symbolPen=None, symbolSize=15, symbolBrush=(46, 204, 113, 100))
-            else:
-                self.traces[name] = self.canvas.plot(pen=pg.mkPen(
-                    color='y', width=0.5, style=QtCore.Qt.DashLine))
+            #else:
+            #    self.traces[name] = self.canvas.plot(pen=pg.mkPen(
+            #        color='y', width=0.5, style=QtCore.Qt.DashLine))
             self.canvas.setXRange(-40, 40)
             self.canvas.setYRange(0, 60)
 
@@ -57,9 +57,9 @@ class RadarPlot():
         origin = np.array([[0, 0]])
         self.DBSCAN()
 
-        for index, row in self.corepoints_centroids.iterrows():
-            name = "centroid_line_"+str(index)
-            self.trace(name, [0, row[1]], [0, row[0]])
+        #for index, row in self.corepoints_centroids.iterrows():
+        #    name = "centroid_line_"+str(index)
+        #    self.trace(name, [0, row[1]], [0, row[0]])
         self.trace(
             "radar", self.radar_data_rotated[:, 1], self.radar_data_rotated[:, 0])
         self.trace(
@@ -126,6 +126,6 @@ if __name__ == '__main__':
     p = RadarPlot()
     timer = QtCore.QTimer()
     timer.timeout.connect(p.update)
-    timer.start(100)
+    timer.start(20)
     if (sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
         QtGui.QApplication.instance().exec_()
